@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>test with authors</title>
+	<style type="text/css">
+		circle.node {
+		  stroke: #fff;
+		  stroke-width: 1.5px;
+		}
+		line.link {
+		  stroke: #999;
+		  stroke-opacity: .6;
+		}
+		.nodetext { pointer-events: none; font: 10px sans-serif; }
+	</style>
+	<script type="text/javascript" src="jquery-1.5.1.min.js"></script>
+	<script type="text/javascript" src="layout_misc.js"></script>
+	<script type="text/javascript" src="d3.v2.min.js"></script>
+</head>
+<body>
+<div id="network"></div>
+
+<script type="text/javascript">
+var authors = {
+		"neighbors": {"0": [2, 1, 12, 8, 9, 7, 6, 11], "1": [11, 0, 9, 8, 12, 7, 4, 2, 5, 6], "2": [12, 0, 9, 7, 8, 11, 6, 1, 4, 5], "3": [12, 10, 8], "4": [7, 9, 8, 5, 11, 1, 2, 6], "5": [9, 6, 8, 4, 7, 11, 2, 1], "6": [11, 5, 9, 0, 8, 12, 2, 4, 1, 7], "7": [9, 4, 2, 0, 1, 5, 11, 12, 8, 6], "8": [12, 5, 0, 4, 10, 2, 1, 6, 11, 7, 3, 9], "9": [7, 5, 2, 4, 0, 11, 1, 6, 12, 8], "10": [12, 8, 3], "11": [6, 1, 12, 9, 2, 4, 8, 5, 7, 0], "12": [8, 2, 3, 0, 11, 10, 1, 6, 9, 7]}, "neighbors_links": {"0": [7, 11, 12, 15, 17, 19, 28, 52], "1": [4, 11, 24, 26, 32, 34, 35, 44, 49, 54], "2": [5, 7, 9, 13, 25, 31, 42, 44, 46, 48], "3": [6, 37, 50], "4": [3, 16, 21, 29, 33, 35, 46, 53], "5": [8, 10, 14, 29, 39, 40, 48, 49], "6": [2, 10, 27, 28, 30, 36, 42, 53, 54, 55], "7": [1, 3, 13, 19, 34, 39, 43, 45, 47, 55], "8": [0, 14, 15, 21, 22, 25, 26, 30, 38, 47, 50, 51], "9": [1, 8, 9, 16, 17, 23, 24, 27, 41, 51], "10": [20, 22, 37], "11": [2, 4, 18, 23, 31, 33, 38, 40, 43, 52], "12": [0, 5, 6, 12, 18, 20, 32, 36, 41, 45]}, 
+		"nodes": [{"nodeName": "Bohlen, E", "nodeWeight": 60.428134556574932}, {"nodeName": "Henneken, E", "nodeWeight": 110.09174311926606}, {"nodeName": "Luker, J", "nodeWeight": 58.211009174311933}, {"nodeName": "Conti, A", "nodeWeight": 27.171253822629971}, {"nodeName": "Thiell, B", "nodeWeight": 5.0}, {"nodeName": "di Milia, G", "nodeWeight": 5.0}, {"nodeName": "Murray, S", "nodeWeight": 78.165137614678912}, {"nodeName": "Grant, C", "nodeWeight": 110.09174311926606}, {"nodeName": "Accomazzi, A", "nodeWeight": 150.0}, {"nodeName": "Thompson, D", "nodeWeight": 78.165137614678912}, {"nodeName": "Lowe, S", "nodeWeight": 27.171253822629971}, {"nodeName": "Kurtz, M", "nodeWeight": 110.09174311926606}, {"nodeName": "Di Milia, G", "nodeWeight": 132.26299694189601}], 
+		"nodes_names": ["Bohlen, E", "Henneken, E", "Luker, J", "Conti, A", "Thiell, B", "di Milia, G", "Murray, S", "Grant, C", "Accomazzi, A", "Thompson, D", "Lowe, S", "Kurtz, M", "Di Milia, G"], 
+		"links": [{"source": 8, "target": 12, "value": 40.0}, {"source": 7, "target": 9, "value": 30.487804878048774}, {"source": 11, "target": 6, "value": 30.487804878048774}, {"source": 7, "target": 4, "value": 0.99999999999999645}, {"source": 1, "target": 11, "value": 39.048780487804876}, {"source": 12, "target": 2, "value": 7.6585365853658516}, {"source": 3, "target": 12, "value": 5.7560975609756042}, {"source": 0, "target": 2, "value": 7.6585365853658516}, {"source": 9, "target": 5, "value": 0.99999999999999645}, {"source": 2, "target": 9, "value": 13.365853658536583}, {"source": 6, "target": 5, "value": 0.99999999999999645}, {"source": 0, "target": 1, "value": 21.926829268292682}, {"source": 0, "target": 12, "value": 21.926829268292682}, {"source": 7, "target": 2, "value": 13.365853658536583}, {"source": 8, "target": 5, "value": 0.99999999999999645}, {"source": 8, "target": 0, "value": 21.926829268292682}, {"source": 4, "target": 9, "value": 0.99999999999999645}, {"source": 0, "target": 9, "value": 21.926829268292682}, {"source": 12, "target": 11, "value": 33.341463414634148}, {"source": 0, "target": 7, "value": 21.926829268292682}, {"source": 12, "target": 10, "value": 5.7560975609756042}, {"source": 8, "target": 4, "value": 0.99999999999999645}, {"source": 8, "target": 10, "value": 5.7560975609756042}, {"source": 11, "target": 9, "value": 30.487804878048774}, {"source": 1, "target": 9, "value": 30.487804878048774}, {"source": 8, "target": 2, "value": 13.365853658536583}, {"source": 8, "target": 1, "value": 39.048780487804876}, {"source": 6, "target": 9, "value": 30.487804878048774}, {"source": 0, "target": 6, "value": 21.926829268292682}, {"source": 4, "target": 5, "value": 0.99999999999999645}, {"source": 8, "target": 6, "value": 30.487804878048774}, {"source": 11, "target": 2, "value": 13.365853658536583}, {"source": 12, "target": 1, "value": 33.341463414634148}, {"source": 11, "target": 4, "value": 0.99999999999999645}, {"source": 7, "target": 1, "value": 39.048780487804876}, {"source": 1, "target": 4, "value": 0.99999999999999645}, {"source": 12, "target": 6, "value": 21.926829268292682}, {"source": 3, "target": 10, "value": 5.7560975609756042}, {"source": 8, "target": 11, "value": 39.048780487804876}, {"source": 7, "target": 5, "value": 0.99999999999999645}, {"source": 11, "target": 5, "value": 0.99999999999999645}, {"source": 12, "target": 9, "value": 21.926829268292682}, {"source": 2, "target": 6, "value": 13.365853658536583}, {"source": 7, "target": 11, "value": 39.048780487804876}, {"source": 1, "target": 2, "value": 13.365853658536583}, {"source": 12, "target": 7, "value": 33.341463414634148}, {"source": 2, "target": 4, "value": 0.99999999999999645}, {"source": 8, "target": 7, "value": 39.048780487804876}, {"source": 2, "target": 5, "value": 0.99999999999999645}, {"source": 1, "target": 5, "value": 0.99999999999999645}, {"source": 8, "target": 3, "value": 5.7560975609756042}, {"source": 8, "target": 9, "value": 30.487804878048774}, {"source": 0, "target": 11, "value": 21.926829268292682}, {"source": 6, "target": 4, "value": 0.99999999999999645}, {"source": 1, "target": 6, "value": 30.487804878048774}, {"source": 7, "target": 6, "value": 30.487804878048774}]
+		};
+
+var w = 960,
+	h = 500,
+	fill = d3.scale.category20();
+
+var vis = d3
+	.select("#network")
+	.append("svg")
+	.attr("width", w)
+	.attr("height", h)
+	.attr("style", "border:1px solid black;")
+	.append("g");
+	
+vis.append("rect")
+    .attr("width", w)
+    .attr("height", h)
+    .style("stroke", "#000");
+
+
+var force = d3.layout.force()
+	.charge(-80)
+	.linkDistance(150)
+	.nodes(authors.nodes)
+	.links(authors.links)
+	.size([w, h])
+	.start();
+
+var link = vis.selectAll("line.link")
+	.data(authors.links)
+	.enter()
+	.append("line")
+	.attr("class", "link")
+	.style("stroke-width", function(d) { 
+				//return Math.sqrt(d.value);
+				return 0.05 + Misc.custLog(d.value + 1, 10);
+		})
+	.attr("x1", function(d) { return d.source.x; })
+	.attr("y1", function(d) { return d.source.y; })
+	.attr("x2", function(d) { return d.target.x; })
+	.attr("y2", function(d) { return d.target.y; });
+
+
+var node = vis.selectAll("g.node")
+	.data(authors.nodes)
+	.enter().append("g")
+	.attr("class", "node")
+	.call(force.drag);
+
+node.append("circle")
+	.attr("class", "circle")
+	.attr("r", function(d) {
+			return 2 * Math.log(d.nodeWeight);
+		}		
+	)
+	.style("fill", function(d) { return fill(1); })
+	.append("title")
+	.text(function(d) { return d.nodeName; });
+
+node.append("text")
+	.attr("class", "nodetext")
+	.attr("dx", 12)
+	.attr("dy", ".35em")
+	.text(function(d) { return d.nodeName });
+
+//node.append("title")
+//	.text(function(d) { return d.nodeName; });
+
+	
+
+force.on("tick", function() {
+    link.attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  });
+
+</script>
+
+</body>
+</html>
